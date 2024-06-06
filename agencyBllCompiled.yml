@@ -1,0 +1,248 @@
+openapi: 3.0.3
+info:
+  title: agency bll
+  description: This is my API
+  version: 1.0.0
+paths:
+  /agencyPlan/byReferralCodeGet:
+    post:
+      operationId: /agencyPlan/getByReferralCode
+      description: 用推薦碼取得代理方案
+      tags:
+        - agencyPlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPlanGetByReferralCodeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPlanGetByReferralCodeResponse'
+components:
+  schemas:
+    id:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    result:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        requestId:
+          type: string
+        success:
+          type: boolean
+    phoneNumber:
+      type: object
+      title: phoneNumber
+      properties:
+        countryCode:
+          type: integer
+          format: int32
+        nationalPhoneNumber:
+          type: string
+    agency:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-field-extra-annotation: '@com.baomidou.mybatisplus.annotation.TableId(type = com.baomidou.mybatisplus.annotation.IdType.AUTO)'
+        name:
+          type: string
+        countryCode:
+          type: integer
+        nationalPhoneNumber:
+          type: string
+        agencyStatus:
+          type: integer
+          description: '1:active 2:inactive'
+        platformId:
+          type: integer
+          format: int64
+        platformName:
+          type: string
+        registrationMethod:
+          type: integer
+          description: '1:phone 2:email 3:username'
+        createdAt:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    agencyAddRequest:
+      $ref: '#/components/schemas/agency'
+    agencyAddResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/id'
+    agencyGetRequest:
+      allOf:
+        - $ref: '#/components/schemas/agency'
+        - type: object
+          properties:
+            createdAtFrom:
+              type: string
+              format: date-time
+            createdAtTo:
+              type: string
+              format: date-time
+            updatedAtFrom:
+              type: string
+              format: date-time
+            updatedAtTo:
+              type: string
+              format: date-time
+            idIn:
+              type: array
+              items:
+                type: integer
+                format: int64
+    agencyGetResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/agency'
+    agencyUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/agency'
+        - type: object
+          properties:
+            query:
+              $ref: '#/components/schemas/agencyGetRequest'
+    agencyUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/agency'
+    agencyPlan:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-field-extra-annotation: '@com.baomidou.mybatisplus.annotation.TableId(type = com.baomidou.mybatisplus.annotation.IdType.AUTO)'
+        name:
+          type: string
+        agencyId:
+          type: integer
+          format: int64
+        agencyName:
+          type: string
+        cardAssociation:
+          type: integer
+          description: '1:visa 2:masterCard 3:AmericanExpress 4:JCB 5:unionPay'
+        platformId:
+          type: integer
+          format: int64
+        platformName:
+          type: string
+        registrationMethod:
+          type: integer
+          description: '1:phone 2:email 3:username'
+        discount:
+          type: number
+          description: in percentage
+        referralCode:
+          type: string
+        planStatus:
+          type: integer
+          description: '1:active 2:inactive'
+        createdAt:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    agencyPlanQuery:
+      allOf:
+        - $ref: '#/components/schemas/agencyPlan'
+        - type: object
+          properties:
+            createdAtFrom:
+              type: string
+              format: date-time
+            createdAtTo:
+              type: string
+              format: date-time
+            updatedAtFrom:
+              type: string
+              format: date-time
+            updatedAtTo:
+              type: string
+              format: date-time
+            idIn:
+              type: array
+              items:
+                type: integer
+                format: int64
+    agencyPlanAddRequest:
+      $ref: '#/components/schemas/agencyPlan'
+    agencyPlanAddResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/id'
+    agencyPlanGetRequest:
+      $ref: '#/components/schemas/agencyPlanQuery'
+    agencyPlanGetResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/agencyPlan'
+    agencyPlanGetByReferralCodeRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        referralCode:
+          type: string
+    agencyPlanGetByReferralCodeResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/agencyPlan'
+    agencyPlanUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/agencyPlan'
+        - type: object
+          properties:
+            query:
+              $ref: '#/components/schemas/agencyPlanQuery'
+    agencyPlanUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/result'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/agencyPlan'
+

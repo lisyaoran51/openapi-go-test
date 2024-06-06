@@ -1,0 +1,1112 @@
+openapi: 3.0.3
+info:
+  description: This is my API
+  title: agency base
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /agency:
+    patch:
+      description: 批量更新代理
+      operationId: /agency/batchUpdate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyBatchUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyBatchUpdateResponse'
+          description: OK
+      tags:
+      - agency
+    post:
+      description: 新增代理
+      operationId: /agency/add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agency'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyAddResponse'
+          description: OK
+      tags:
+      - agency
+  /agencyGet:
+    post:
+      description: 取得代理
+      operationId: /agency/get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyQuery'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyGetResponse'
+          description: OK
+      tags:
+      - agency
+  /agency/pageGet:
+    post:
+      description: 取得代理分頁
+      operationId: /agency/page/get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPageRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPageResponse'
+          description: OK
+      tags:
+      - agency
+  /agency/{agencyId}:
+    patch:
+      description: 更新代理
+      operationId: /agency/update
+      parameters:
+      - description: agency ID
+        explode: false
+        in: path
+        name: agencyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyUpdateResponse'
+          description: OK
+      tags:
+      - agency
+  /agencyPlan:
+    patch:
+      description: 批量更新代理方案
+      operationId: /agencyPlan/batchUpdate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPlanBatchUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPlanBatchUpdateResponse'
+          description: OK
+      tags:
+      - agencyPlan
+    post:
+      description: 新增代理方案
+      operationId: /agencyPlan/add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPlan'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPlanAddResponse'
+          description: OK
+      tags:
+      - agencyPlan
+  /agencyPlanGet:
+    post:
+      description: 取得代理方案
+      operationId: /agencyPlan/get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPlanQuery'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPlanGetResponse'
+          description: OK
+      tags:
+      - agencyPlan
+  /agencyPlan/{agencyPlanId}:
+    patch:
+      description: 更新代理方案
+      operationId: /agencyPlan/update
+      parameters:
+      - description: agency plan ID
+        explode: false
+        in: path
+        name: agencyPlanId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPlanUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPlanUpdateResponse'
+          description: OK
+      tags:
+      - agencyPlan
+  /agencyPlan/byReferralCodeGet:
+    post:
+      description: 用推薦碼取得代理方案
+      operationId: /agencyPlan/getByReferralCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyPlanGetByReferralCodeRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyPlanGetByReferralCodeResponse'
+          description: OK
+      tags:
+      - agencyPlan
+  /agencyWithPlan:
+    post:
+      description: 新增代理同時新增方案
+      operationId: /agencyWithPlan/add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyWithPlan'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyWithPlanAddResponse'
+          description: OK
+      tags:
+      - agencyWithPlan
+  /agencyWithPlanGet:
+    post:
+      description: 取得代理同時取得方案
+      operationId: /agencyWithPlan/get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyWithPlanQuery'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyWithPlanGetResponse'
+          description: OK
+      tags:
+      - agencyWithPlan
+  /agencyWithPlan/pageGet:
+    post:
+      description: 取得代理同時取得方案分頁
+      operationId: /agencyWithPlan/page/get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agencyWithPlanPageRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agencyWithPlanPageResponse'
+          description: OK
+      tags:
+      - agencyWithPlan
+  /platformGet:
+    post:
+      description: 取得平台
+      operationId: /platform/get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/platform'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/platformGetResponse'
+          description: OK
+      tags:
+      - platform
+components:
+  schemas:
+    id:
+      example:
+        id: 6
+      properties:
+        id:
+          format: int64
+          type: integer
+      type: object
+    result:
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        requestId:
+          type: string
+        success:
+          type: boolean
+      type: object
+    phoneNumber:
+      properties:
+        countryCode:
+          format: int32
+          type: integer
+        nationalPhoneNumber:
+          type: string
+      title: phoneNumber
+      type: object
+    agency:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        countryCode: 1
+        name: name
+        agencyStatus: 5
+        id: 6
+        nationalPhoneNumber: nationalPhoneNumber
+        platformId: 5
+        registrationMethod: 2
+        platformName: platformName
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-field-extra-annotation: '@com.baomidou.mybatisplus.annotation.TableId(type
+            = com.baomidou.mybatisplus.annotation.IdType.AUTO)'
+        name:
+          type: string
+        countryCode:
+          type: integer
+        nationalPhoneNumber:
+          type: string
+        agencyStatus:
+          description: 1:active 2:inactive
+          type: integer
+        platformId:
+          format: int64
+          type: integer
+        platformName:
+          type: string
+        registrationMethod:
+          description: 1:phone 2:email 3:username
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    agencyQuery:
+      allOf:
+      - $ref: '#/components/schemas/agency'
+      - properties:
+          createdAtFrom:
+            format: date-time
+            type: string
+          createdAtTo:
+            format: date-time
+            type: string
+          updatedAtFrom:
+            format: date-time
+            type: string
+          updatedAtTo:
+            format: date-time
+            type: string
+          idIn:
+            items:
+              format: int64
+              type: integer
+            type: array
+        type: object
+    agencyAddRequest:
+      $ref: '#/components/schemas/agency'
+    agencyAddResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/id'
+        type: object
+      example:
+        code: 0
+        data:
+          id: 6
+        requestId: requestId
+        success: true
+        message: message
+    agencyGetRequest:
+      $ref: '#/components/schemas/agencyQuery'
+    agencyGetResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/agency'
+            type: array
+        type: object
+      example:
+        code: 0
+        data:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          name: name
+          agencyStatus: 5
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          platformId: 5
+          registrationMethod: 2
+          platformName: platformName
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          name: name
+          agencyStatus: 5
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          platformId: 5
+          registrationMethod: 2
+          platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyPageRequest:
+      allOf:
+      - $ref: '#/components/schemas/agencyQuery'
+      - properties:
+          pageCurrent:
+            type: integer
+          pageSize:
+            type: integer
+        type: object
+    agencyPageResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/agencyPageResponse_allOf_data'
+        type: object
+      example:
+        code: 0
+        data:
+          total: 6
+          current: 5
+          pages: 5
+          size: 1
+          records:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            countryCode: 1
+            name: name
+            agencyStatus: 5
+            id: 6
+            nationalPhoneNumber: nationalPhoneNumber
+            platformId: 5
+            registrationMethod: 2
+            platformName: platformName
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            countryCode: 1
+            name: name
+            agencyStatus: 5
+            id: 6
+            nationalPhoneNumber: nationalPhoneNumber
+            platformId: 5
+            registrationMethod: 2
+            platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyUpdateRequest:
+      allOf:
+      - $ref: '#/components/schemas/agency'
+      - properties:
+          query:
+            $ref: '#/components/schemas/agencyQuery'
+        type: object
+    agencyUpdateResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/agency'
+        type: object
+      example:
+        code: 0
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          name: name
+          agencyStatus: 5
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          platformId: 5
+          registrationMethod: 2
+          platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyBatchUpdateRequest:
+      allOf:
+      - $ref: '#/components/schemas/agency'
+      - properties:
+          query:
+            $ref: '#/components/schemas/agencyQuery'
+        type: object
+    agencyBatchUpdateResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            type: object
+        type: object
+      example:
+        code: 0
+        data: "{}"
+        requestId: requestId
+        success: true
+        message: message
+    agencyPlan:
+      example:
+        cardAssociation: 5
+        discount: 7.061401241503109
+        planStatus: 9
+        agencyId: 1
+        platformId: 5
+        agencyName: agencyName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        referralCode: referralCode
+        name: name
+        id: 6
+        registrationMethod: 2
+        platformName: platformName
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-field-extra-annotation: '@com.baomidou.mybatisplus.annotation.TableId(type
+            = com.baomidou.mybatisplus.annotation.IdType.AUTO)'
+        name:
+          type: string
+        agencyId:
+          format: int64
+          type: integer
+        agencyName:
+          type: string
+        cardAssociation:
+          description: 1:visa 2:masterCard 3:AmericanExpress 4:JCB 5:unionPay
+          type: integer
+        platformId:
+          format: int64
+          type: integer
+        platformName:
+          type: string
+        registrationMethod:
+          description: 1:phone 2:email 3:username
+          type: integer
+        discount:
+          description: in percentage
+          type: number
+        referralCode:
+          type: string
+        planStatus:
+          description: 1:active 2:inactive
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    agencyPlanQuery:
+      allOf:
+      - $ref: '#/components/schemas/agencyPlan'
+      - properties:
+          createdAtFrom:
+            format: date-time
+            type: string
+          createdAtTo:
+            format: date-time
+            type: string
+          updatedAtFrom:
+            format: date-time
+            type: string
+          updatedAtTo:
+            format: date-time
+            type: string
+          idIn:
+            items:
+              format: int64
+              type: integer
+            type: array
+        type: object
+    agencyPlanAddRequest:
+      $ref: '#/components/schemas/agencyPlan'
+    agencyPlanAddResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/id'
+        type: object
+      example:
+        code: 0
+        data:
+          id: 6
+        requestId: requestId
+        success: true
+        message: message
+    agencyPlanGetRequest:
+      $ref: '#/components/schemas/agencyPlanQuery'
+    agencyPlanGetResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/agencyPlan'
+            type: array
+        type: object
+      example:
+        code: 0
+        data:
+        - cardAssociation: 5
+          discount: 7.061401241503109
+          planStatus: 9
+          agencyId: 1
+          platformId: 5
+          agencyName: agencyName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          referralCode: referralCode
+          name: name
+          id: 6
+          registrationMethod: 2
+          platformName: platformName
+        - cardAssociation: 5
+          discount: 7.061401241503109
+          planStatus: 9
+          agencyId: 1
+          platformId: 5
+          agencyName: agencyName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          referralCode: referralCode
+          name: name
+          id: 6
+          registrationMethod: 2
+          platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyPlanGetByReferralCodeRequest:
+      properties:
+        userId:
+          format: int64
+          type: integer
+        referralCode:
+          type: string
+      type: object
+    agencyPlanGetByReferralCodeResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/agencyPlan'
+        type: object
+      example:
+        code: 0
+        data:
+          cardAssociation: 5
+          discount: 7.061401241503109
+          planStatus: 9
+          agencyId: 1
+          platformId: 5
+          agencyName: agencyName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          referralCode: referralCode
+          name: name
+          id: 6
+          registrationMethod: 2
+          platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyPlanUpdateRequest:
+      allOf:
+      - $ref: '#/components/schemas/agencyPlan'
+      - properties:
+          query:
+            $ref: '#/components/schemas/agencyPlanQuery'
+        type: object
+    agencyPlanUpdateResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/agencyPlan'
+        type: object
+      example:
+        code: 0
+        data:
+          cardAssociation: 5
+          discount: 7.061401241503109
+          planStatus: 9
+          agencyId: 1
+          platformId: 5
+          agencyName: agencyName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          referralCode: referralCode
+          name: name
+          id: 6
+          registrationMethod: 2
+          platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyPlanBatchUpdateRequest:
+      allOf:
+      - $ref: '#/components/schemas/agencyPlan'
+      - properties:
+          query:
+            $ref: '#/components/schemas/agencyPlanQuery'
+        type: object
+    agencyPlanBatchUpdateResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            type: object
+        type: object
+      example:
+        code: 0
+        data: "{}"
+        requestId: requestId
+        success: true
+        message: message
+    agencyWithPlan:
+      allOf:
+      - $ref: '#/components/schemas/agency'
+      - properties:
+          planId:
+            format: int64
+            type: integer
+          planName:
+            type: string
+          cardAssociation:
+            description: 1:visa 2:masterCard 3:AmericanExpress 4:JCB 5:unionPay
+            type: integer
+          discount:
+            description: in percentage
+            type: number
+          referralCode:
+            type: string
+          planStatus:
+            description: 1:active 2:inactive
+            type: integer
+        type: object
+      example:
+        cardAssociation: 9
+        planName: planName
+        discount: 3.616076749251911
+        planStatus: 2
+        platformId: 5
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        countryCode: 1
+        referralCode: referralCode
+        name: name
+        agencyStatus: 5
+        planId: 7
+        id: 6
+        nationalPhoneNumber: nationalPhoneNumber
+        registrationMethod: 2
+        platformName: platformName
+    agencyWithPlanQuery:
+      allOf:
+      - $ref: '#/components/schemas/agencyWithPlan'
+      - properties:
+          createdAtFrom:
+            format: date-time
+            type: string
+          createdAtTo:
+            format: date-time
+            type: string
+          updatedAtFrom:
+            format: date-time
+            type: string
+          updatedAtTo:
+            format: date-time
+            type: string
+          orderByColumn:
+            type: string
+          orderByDirection:
+            description: 1:asc 2:desc
+            type: integer
+          strategy:
+            description: 1:newest 2:oldest 3:newest active 4:oldest active
+            type: integer
+        type: object
+    agencyWithPlanAddRequest:
+      $ref: '#/components/schemas/agencyWithPlan'
+    agencyWithPlanAddResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/agencyWithPlanAddResponse_allOf_data'
+        type: object
+      example:
+        code: 0
+        data:
+          agencyPlanId: 1
+          agencyId: 6
+        requestId: requestId
+        success: true
+        message: message
+    agencyWithPlanGetRequest:
+      $ref: '#/components/schemas/agencyWithPlanQuery'
+    agencyWithPlanGetResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/agencyWithPlan'
+            type: array
+        type: object
+      example:
+        code: 0
+        data:
+        - cardAssociation: 9
+          planName: planName
+          discount: 3.616076749251911
+          planStatus: 2
+          platformId: 5
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          referralCode: referralCode
+          name: name
+          agencyStatus: 5
+          planId: 7
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          registrationMethod: 2
+          platformName: platformName
+        - cardAssociation: 9
+          planName: planName
+          discount: 3.616076749251911
+          planStatus: 2
+          platformId: 5
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          referralCode: referralCode
+          name: name
+          agencyStatus: 5
+          planId: 7
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          registrationMethod: 2
+          platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    agencyWithPlanPageRequest:
+      allOf:
+      - $ref: '#/components/schemas/agencyWithPlanQuery'
+      - properties:
+          pageCurrent:
+            type: integer
+          pageSize:
+            type: integer
+        type: object
+    agencyWithPlanPageResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            $ref: '#/components/schemas/agencyWithPlanPageResponse_allOf_data'
+        type: object
+      example:
+        code: 0
+        data:
+          total: 6
+          current: 5
+          pages: 5
+          size: 1
+          records:
+          - cardAssociation: 9
+            planName: planName
+            discount: 3.616076749251911
+            planStatus: 2
+            platformId: 5
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            countryCode: 1
+            referralCode: referralCode
+            name: name
+            agencyStatus: 5
+            planId: 7
+            id: 6
+            nationalPhoneNumber: nationalPhoneNumber
+            registrationMethod: 2
+            platformName: platformName
+          - cardAssociation: 9
+            planName: planName
+            discount: 3.616076749251911
+            planStatus: 2
+            platformId: 5
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            countryCode: 1
+            referralCode: referralCode
+            name: name
+            agencyStatus: 5
+            planId: 7
+            id: 6
+            nationalPhoneNumber: nationalPhoneNumber
+            registrationMethod: 2
+            platformName: platformName
+        requestId: requestId
+        success: true
+        message: message
+    platform:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: 6
+        registrationMethod: 1
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-field-extra-annotation: '@com.baomidou.mybatisplus.annotation.TableId(type
+            = com.baomidou.mybatisplus.annotation.IdType.AUTO)'
+        name:
+          type: string
+        registrationMethod:
+          description: 1:phone 2:email 3:username
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    platformGetRequest:
+      $ref: '#/components/schemas/platform'
+    platformGetResponse:
+      allOf:
+      - $ref: '#/components/schemas/result'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/platform'
+            type: array
+        type: object
+      example:
+        code: 0
+        data:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: 6
+          registrationMethod: 1
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: 6
+          registrationMethod: 1
+        requestId: requestId
+        success: true
+        message: message
+    agencyPageResponse_allOf_data:
+      example:
+        total: 6
+        current: 5
+        pages: 5
+        size: 1
+        records:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          name: name
+          agencyStatus: 5
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          platformId: 5
+          registrationMethod: 2
+          platformName: platformName
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          name: name
+          agencyStatus: 5
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          platformId: 5
+          registrationMethod: 2
+          platformName: platformName
+      properties:
+        total:
+          format: int64
+          type: integer
+        size:
+          format: int64
+          type: integer
+        current:
+          format: int64
+          type: integer
+        pages:
+          format: int64
+          type: integer
+        records:
+          items:
+            $ref: '#/components/schemas/agency'
+          type: array
+      type: object
+    agencyWithPlanAddResponse_allOf_data:
+      example:
+        agencyPlanId: 1
+        agencyId: 6
+      properties:
+        agencyId:
+          format: int64
+          type: integer
+        agencyPlanId:
+          format: int64
+          type: integer
+      type: object
+    agencyWithPlanPageResponse_allOf_data:
+      example:
+        total: 6
+        current: 5
+        pages: 5
+        size: 1
+        records:
+        - cardAssociation: 9
+          planName: planName
+          discount: 3.616076749251911
+          planStatus: 2
+          platformId: 5
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          referralCode: referralCode
+          name: name
+          agencyStatus: 5
+          planId: 7
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          registrationMethod: 2
+          platformName: platformName
+        - cardAssociation: 9
+          planName: planName
+          discount: 3.616076749251911
+          planStatus: 2
+          platformId: 5
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          countryCode: 1
+          referralCode: referralCode
+          name: name
+          agencyStatus: 5
+          planId: 7
+          id: 6
+          nationalPhoneNumber: nationalPhoneNumber
+          registrationMethod: 2
+          platformName: platformName
+      properties:
+        total:
+          format: int64
+          type: integer
+        size:
+          format: int64
+          type: integer
+        current:
+          format: int64
+          type: integer
+        pages:
+          format: int64
+          type: integer
+        records:
+          items:
+            $ref: '#/components/schemas/agencyWithPlan'
+          type: array
+      type: object
