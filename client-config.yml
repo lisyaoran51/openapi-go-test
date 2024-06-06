@@ -1,0 +1,5 @@
+package: client
+generate:
+  # NOTE another server must be added!
+  client: true
+output: client/client.go

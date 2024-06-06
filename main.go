@@ -15,9 +15,10 @@ import (
 	// WARNING!
 	// Pass --git-repo-id and --git-user-id properties when generating the code
 	//
-	sw "github.com/lisyaoran51/openapi-go-test/service/internal/api"
+	sw "github.com/lisyaoran51/openapi-go-test/service/api"
 )
 
+//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen agencyBaseCompiled.yml
 func main() {
 	routes := sw.ApiHandleFunctions{}
 

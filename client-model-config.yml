@@ -1,0 +1,5 @@
+package: client
+generate:
+  # NOTE another server must be added!
+  models: true
+output: client/model.go
